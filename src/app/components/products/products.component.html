@@ -1,0 +1,33 @@
+<p-table [value]="products" [paginator]="true" [rows]="10" [globalFilterFields]="['name', 'category']">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Görsel</th>
+      <th>Ürün Adı</th>
+      <th>Fiyat</th>
+      <th>İşlemler</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>
+        <img [src]="product.productImage[0]" [alt]="product.name" width="32" height="32" 
+             (click)="showImage(product.productImage[0])" style="cursor: pointer;" />
+      </td>
+      <td>{{ product.productName }}</td>
+      <td>{{ product.productPrice | currency:'TRY' }}</td>
+      <td>
+        <button pButton type="button" icon="pi pi-heart" 
+            [ngClass]="{'pi pi-heart-fill': product.isFavorite}" 
+            (click)="toggleFavorite(product)" 
+            class="p-button-rounded p-button-text">
+          </button>
+          <button pButton type="button" label="Detay" icon="pi pi-info-circle" (click)="viewDetails(product)"
+          class="p-button-rounded p-button-text p-button-info"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog [(visible)]="display" [modal]="true">
+    <img [src]="selectedImage" alt="Image" style="width: 100%;" />
+</p-dialog>

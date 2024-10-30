@@ -1,0 +1,10 @@
+.container {
+    display: flex; // Yatayda esnek bir düzen oluştur
+    height: 100vh; // Sayfanın yüksekliğini kapsasın
+  }
+  
+  .content {
+    width: 90%; // İçerik alanı için %90 genişlik
+    padding: 20px; // İçerik etrafında boşluk
+  }
+  

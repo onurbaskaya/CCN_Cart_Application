@@ -1,0 +1,57 @@
+.cart {
+    padding: 20px;
+    
+    .cart-container {
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 5px;
+  
+      h3 {
+        margin-top: 0;
+        color: #333;
+      }
+  
+      .product-table {
+        width: 100%;
+        border-collapse: collapse;
+  
+        th, td {
+          padding: 10px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+  
+        th {
+          background-color: #f4f4f4;
+        }
+      }
+  
+      .cart-summary {
+        margin-top: 15px;
+        font-weight: bold;
+  
+        p {
+          margin: 5px 0;
+        }
+      }
+  
+      button {
+        margin-right: 10px;
+      }
+    }
+  
+    button {
+      background-color: #007bff; // PrimeNG'nin varsayılan mavi rengi
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 15px;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: #0056b3; // Hover efekti
+      }
+    }
+  }
+  

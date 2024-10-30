@@ -1,0 +1,75 @@
+<div class="product-detail">
+    <h2>{{ product.productName }}</h2>
+    <div class="product-info">
+        <div class="product-images">
+            <img *ngFor="let image of product.productImage" 
+                 [src]="image" 
+                 [alt]="product.name" 
+                 width="100" 
+                 (click)="showImage(image)" 
+                 class="clickable-image" />
+        </div>
+    </div>
+
+    <div class="product-description">
+        <p>{{ product.description }}</p>
+        <p><strong>Fiyat:</strong> {{ product.productPrice | currency:'TRY' }}</p>
+
+        <label for="cart-select">Sepet Seç:</label>&nbsp;
+        <select id="cart-select" [formControl]="selectedCartName" (change)="onCartSelect($event)">
+            <option value="" disabled selected>Sepet Seçiniz</option>
+            <option *ngFor="let cart of carts" [value]="cart.name">{{ cart.name }}</option>
+        </select>&nbsp;
+
+        <button pButton type="button" label="Sepete Ekle" (click)="addToCart()" class="p-button-success"></button>&nbsp;
+        <button pButton type="button" 
+                [label]="product.isFavorite ? 'Favoriden Kaldır' : 'Favoriye Ekle'" 
+                (click)="toggleFavorite(product)" 
+                class="p-button-warning">
+            <i class="pi" [ngClass]="{'pi-heart': !product.isFavorite, 'pi-heart-fill': product.isFavorite}"></i>
+        </button>
+    </div>
+    <div *ngIf="product.productDescription">
+        <h4>Ürün Detayları:</h4>
+        <ul>
+            <li *ngIf="product.productDescription.Model"><strong>Model:</strong> {{ product.productDescription.Model }}</li>
+            <li *ngIf="product.productDescription.Colors"><strong>Renkler:</strong> {{ product.productDescription.Colors }}</li>
+            <li *ngIf="product.productDescription['Driver Sensitivity']"><strong>Sürücü Hassasiyeti:</strong> {{ product.productDescription['Driver Sensitivity'] }}</li>
+            <li *ngIf="product.productDescription['Frequency Response Range']"><strong>Frekans Tepkisi Aralığı:</strong> {{ product.productDescription['Frequency Response Range'] }}</li>
+            <li *ngIf="product.productDescription['Microphone Sensitivity']"><strong>Mikrofon Hassasiyeti:</strong> {{ product.productDescription['Microphone Sensitivity'] }}</li>
+            <li *ngIf="product.productDescription['Bluetooth Verison']"><strong>Bluetooth Versiyonu:</strong> {{ product.productDescription['Bluetooth Verison'] }}</li>
+            <li *ngIf="product.productDescription.Weight"><strong>Ağırlık:</strong> {{ product.productDescription.Weight }}</li>
+            <li *ngIf="product.productDescription.description"><strong>Ek Açıklama:</strong> {{ product.productDescription.description }}</li>
+        </ul>
+    </div>
+
+    <h3>Önerilen Ürünler</h3>
+    <p-table [value]="recommendedProducts" [paginator]="true" [rows]="5">
+        <ng-template pTemplate="header">
+        </ng-template>
+        <ng-template pTemplate="body" let-recommendedProduct>
+            <tr>
+                <td>
+                    <div class="image-gallery">
+                        <img *ngFor="let image of recommendedProduct.productImage" 
+                             [src]="image" 
+                             [alt]="recommendedProduct.productName" 
+                             width="64" height="64" 
+                             (click)="showImage(image)" 
+                             class="clickable-image" />
+                    </div>
+                </td>
+                <td>{{ recommendedProduct.productName }}</td>
+                <td>{{ recommendedProduct.description }}</td>
+                <td>{{ recommendedProduct.productPrice | currency:'TRY' }}</td>
+                <td>
+                    <button pButton type="button" label="Git" (click)="viewDetails(recommendedProduct)" class="p-button-info"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <p-dialog [(visible)]="display" [modal]="true">
+        <img [src]="selectedImage" alt="Image" style="width: 100%;" />
+    </p-dialog>
+</div>

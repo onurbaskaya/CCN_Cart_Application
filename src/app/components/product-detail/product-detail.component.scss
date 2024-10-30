@@ -1,0 +1,13 @@
+.image-gallery {
+    display: flex; // Görsellerin yan yana sıralanması için
+    gap: 10px; // Görseller arasındaki boşluk
+}
+
+.product-info {
+    display: flex; // Ürün bilgilerini yan yana yerleştirmek için
+    gap: 20px; // Ürün bilgileri arasındaki boşluk
+}
+.product-images {
+    display: flex;
+    gap: 20px; // Resimler arasındaki boşluk
+}

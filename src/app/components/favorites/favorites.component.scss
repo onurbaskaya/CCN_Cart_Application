@@ -1,0 +1,50 @@
+.p-table {
+    margin: 20px; /* Tabloya kenar boşluğu ekle */
+  }
+  
+  img {
+    border-radius: 4px; /* Resim köşelerini yuvarla */
+  }
+  .p-button-rounded {
+    margin-right: 1px; 
+  }
+  
+  .pi-heart-fill {
+    color: red !important; 
+  }
+  
+  .pi-heart {
+    color: gray !important;
+  }
+
+  .button-group {
+    margin-bottom: 1rem;
+
+    button {
+        margin-right: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #f0f0f0; // Hover rengi
+        }
+
+        &:focus {
+            outline: none; // Odaklanma durumu
+        }
+
+        &.p-button-rounded {
+            background-color: #007ad9; // Buton rengi
+            color: white;
+
+            &:hover {
+                background-color: #005bb5; // Hover durumu için daha koyu renk
+            }
+        }
+    }
+}
+

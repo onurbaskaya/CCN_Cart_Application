@@ -1,0 +1,63 @@
+<div class="cart">
+    <button (click)="createNewCart()">Yeni Sepet Ekle</button><br><br>
+
+    <div *ngFor="let cart of carts; let i = index" class="cart-container">
+        <h3>{{ cart.name }}</h3>
+
+        <button (click)="selectAllProducts(i)">Tümünü Seç</button>
+        <button (click)="deselectAllProducts(i)">Tüm Seçimleri Kaldır</button>
+        <button (click)="deleteSelectedProducts(i)">Seçilenleri Sil</button>
+        <button (click)="deleteCart(i)">Sepeti Sil</button><br><br>
+
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Adet</th>
+                    <th>Fiyat</th>
+                    <th>KDV</th>
+                    <th>Toplam</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of cart.products">
+                    <td>
+                        <input type="checkbox" [checked]="item.selected" (change)="toggleSelection(i, item)">
+                    </td>
+                    <td>
+                        <img [src]="item.productImage[0]" width="32" height="32" 
+                             (click)="showImage(item.productImage[0])" style="cursor: pointer;" />
+                    </td>
+                    <td>{{ item.productName }}</td>
+                    <td>
+                        <input 
+                            type="number" 
+                            class="quantity-input" 
+                            [value]="item.quantity" 
+                            (change)="updateQuantity(i, item, $event)" 
+                            min="1" 
+                        />
+                    </td>
+                    <td>{{ item.productPrice | currency:'TRY' }}</td>
+                    <td>{{ calculateKDV(item.productPrice * item.quantity) | currency:'TRY' }}</td>
+                    <td>{{ calculateTotalPrice(item) | currency:'TRY' }}</td>
+                    <td>
+                        <button (click)="viewProductDetails(item)">Ürüne Git</button>
+                        <button (click)="removeProductFromCart(i, item)">Sil</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+            <p><strong>Seçili Ürünlerin Toplamı:</strong> {{ calculateSelectedTotal(cart) | currency:'TRY' }}</p>
+            <p><strong>Kargo:</strong> {{ calculateShipping(cart) | currency:'TRY' }}</p>
+            <p><strong>Genel Toplam:</strong> {{ calculateGrandTotal(cart) | currency:'TRY' }}</p>
+        </div>
+
+        <button (click)="clearCart(i)">Sepeti Boşalt</button>
+    </div>
+</div>

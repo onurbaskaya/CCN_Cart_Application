@@ -1,0 +1,26 @@
+.sidebar {
+    width: 10%; // Menü için %10 genişlik
+    padding: 10px; // İçerik etrafında boşluk
+    color: white; // Metin rengi
+    height: 100vh; // Nav bar yüksekliğini sayfanın tamamı kadar yap
+}
+
+.p-menu {
+    display: flex; // Menü öğelerini yatay göster
+    flex-direction: column; // Dikeyde sıralar
+}
+
+.p-menu .p-menuitem {
+    margin-bottom: 10px; // Menü öğeleri arasında boşluk
+}
+
+.p-menu .p-menuitem-link {
+    color: white; // Menü bağlantılarının rengi
+    text-decoration: none; // Alt çizgi olmaması için
+    display: inline-block; // Menü öğelerinin yan yana görünmesi için
+    padding: 10px; // İçerik etrafında boşluk
+}
+
+.p-menu .p-menuitem-link:hover {
+    text-decoration: underline; // Üzerine gelindiğinde alt çizgi ekle
+}
